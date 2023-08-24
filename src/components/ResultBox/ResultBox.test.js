@@ -74,4 +74,24 @@ describe('Component ResultBox', () => {
 			cleanup()
 		}
 	})
+
+	it('should render proper info when amount is negative', () => {
+		const testCases = [-17, -1234.55, -1, -12323.5433]
+		
+
+		for (const testAmount of testCases) {
+			// render component
+			render(<ResultBox to="USD" from="PLN" amount={testAmount} />)
+
+			// find main div
+			const container = screen.getByTestId('container')
+
+			// check if main div has proper value
+			const result = "Wrong value..."
+			expect(container).toHaveTextContent(result)
+
+			// unmount component
+			cleanup()
+		}
+	})
 })
